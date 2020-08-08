@@ -1,10 +1,8 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
-import Menu from '../../components/Menu';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 import PageDefault from '../../components/PageDefault';
-import Footer from '../../components/Footer';
-
 import categoriasRepository from '../../repositories/categorias';
 
 function Home() {
@@ -14,16 +12,14 @@ function Home() {
     categoriasRepository.getAllWithVideos()
       .then((categoriasComVideos) => {
         setDadosIniciais(categoriasComVideos);
-      }).catch((err) => {
-        // eslint-disable-next-line no-console
+      })
+      .catch((err) => {
         console.log(err.message);
       });
   }, []);
 
   return (
-    <PageDefault>
-      <Menu />
-
+    <PageDefault paddingAll={0}>
       {dadosIniciais.length === 0 && (<div>Loading...</div>)}
 
       {dadosIniciais.map((categoria, indice) => {
